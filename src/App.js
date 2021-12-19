@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from "react";
 
 const catFetch = async () => {
-    try {
+  try {
     const cat = await fetch(
       "https://api.thecatapi.com/v1/breeds/search?q=maine%20coon"
     );
@@ -17,7 +17,7 @@ const catFetch = async () => {
 
 function App() {
 
-const [cat, setCat] = useState("No Cats")
+  const [cat, setCat] = useState("No Cats")
 
   return (
     <div className="App">
@@ -27,4 +27,4 @@ const [cat, setCat] = useState("No Cats")
   );
 }
 
-export default App;
+export default App
