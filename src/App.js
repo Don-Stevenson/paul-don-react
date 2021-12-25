@@ -19,11 +19,11 @@ catFetch() // calls and logs to console
 function App() {
 
   const [cat, setCat] = useState("No Cats")
-
+  console.log("setcat", setCat)
   return (
     <div className="App">
-      <h1> Cat app</h1>
-      <p> {cat}</p>
+      <h1> Cat app </h1>
+      <p> {cat} </p>
     </div>
   )
 }
