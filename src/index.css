@@ -2,6 +2,7 @@ h1 {
   color: blue;
 }
 
-app {
-  flex: auto;  
+.app {
+  flex: auto; 
+  flex-direction: column; 
 }
