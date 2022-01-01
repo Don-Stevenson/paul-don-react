@@ -24,6 +24,7 @@ function App() {
   return (
     <div className="App">
       <h1> Cat app </h1>
+      <h2>---------</h2>
       <p> {cat} </p>
     </div>
   )
