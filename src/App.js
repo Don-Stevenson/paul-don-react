@@ -21,10 +21,11 @@ function App() {
   const [cat, setCat] = useState("No Cats")
   console.log("setcat =>", setCat)
   console.log("cat =>", cat)
+
   return (
     <div className="App">
       <h1> Cat app </h1>
-      <h2>---------</h2>
+      <h2>------------</h2>
       <p> {cat} </p>
     </div>
   )
