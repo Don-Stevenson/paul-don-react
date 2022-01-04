@@ -14,7 +14,7 @@ const catFetch = async () => {
   }
 }
 
-catFetch() // calls and logs to console
+catFetch() // calls and logs to console below
 
 function App() {
 
@@ -27,7 +27,7 @@ function App() {
       <h1> Cat app </h1>
       <h2>--------------</h2>
       <p> {cat} </p>
-      <h2> --------------</h2>
+      <h2> -------------</h2>
     </div>
   )
 }
