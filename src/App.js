@@ -18,15 +18,28 @@ catFetch() // calls and logs to console below
 
 function App() {
 
-  const [cat, setCat] = useState("No Cats")
+  const [cat, setCat] = useState({
+    search: "",
+    results: ""
+  })
   console.log("setcat =>", setCat)
   console.log("cat =>", cat)
+
+const handleInput = (e) => {
+  const [value] = e.target
+  setCat((prevState) => {
+    return {
+      ...prevState,
+      search: value
+    }
+  })
+}
 
   return (
     <div className="App">
       <h1> Cat app </h1>
       <h2>-------------</h2>
-      <p> {cat} </p>
+      <p> {cat.results} </p>
       <h2> ------------</h2>
     </div>
   )
