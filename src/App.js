@@ -3,11 +3,12 @@ import React, { useState } from "react"
 
 const catFetch = async () => {
   try {
-    const cat = await fetch(
+    const catResponse = await fetch(
       "https://api.thecatapi.com/v1/breeds/search?q=maine%20coon"
     )
-    const catJSON = await cat.json()
-    console.log(catJSON[0].description)
+    console.log({catResponse});
+    const catJSON = await catResponse.json()
+    console.log("here as JSON", catJSON[0].description)
     return catJSON
   } catch (error) {
     console.error(error)
