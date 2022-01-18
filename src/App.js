@@ -18,6 +18,23 @@ const catFetch = async () => {
 
 catFetch() // calls and logs to console below
 
+const getBreeds = () => {
+  return fetch("https://api.thecatapi.com/v1/breeds").then ((response)=> {
+    if(response.status === 200) {
+      return response.json()
+    } else {
+      console.log('error')
+    }
+  }).then((res)=> {
+    res.forEach(element => {
+      console.log(element.name)
+    });
+  })
+}
+ getBreeds()
+
+ 
+// https://api.thecatapi.com/v1/breeds
 function App() {
 
   const [cat, setCat] = useState({
@@ -41,11 +58,11 @@ function App() {
     try {
       if (e.key === 'Enter') {
         const results = await fetch("https://api.thecatapi.com/v1/breeds/search?q=" + cat.search)
-        const resultsJSON = await JSON.parse(results)
+        const resultsJSON = await results.json()
         setCat(prevState => {
           return {
             ...prevState,
-            results: resultsJSON.data["0"].description
+            results: resultsJSON[0].description
           }
         }
 
@@ -59,12 +76,12 @@ function App() {
   return (
     <div className="App">
       <h1> Cat app </h1>
-      <h2>-------------</h2>
+      
       <Search handleInput={handleInput} search={search} />
       <Results
         results={cat.results}
       />
-      <h2> ------------</h2>
+   
     </div>
   )
 }
