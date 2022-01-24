@@ -6,3 +6,7 @@ h1 {
   flex: auto; 
   flex-direction: column; 
 }
+
+body {
+  text-align: center;
+}
