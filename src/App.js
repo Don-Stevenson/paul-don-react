@@ -21,7 +21,7 @@ const getBreeds = () => {
       console.log(err);
     });
 };
-getBreeds();
+// getBreeds();
 
 function App() {
   const [cat, setCat] = useState({
@@ -39,7 +39,7 @@ function App() {
     });
   };
 
-  async function search(e) {
+  const search = async (e) => {
     try {
       if (e.key === "Enter") {
         const results = await fetch(
