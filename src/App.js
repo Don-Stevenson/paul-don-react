@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import Results from "./components/Results";
 import Search from "./components/Search";
 
-const getBreeds = () => {
+// TODO
+// Make an array of the cat breeds and then list that to the results
+// convert listBreeds to async await syntax
+
+const listBreeds = async () => {
   return fetch("https://api.thecatapi.com/v1/breeds")
     .then((response) => {
       if (response.status === 200) {
@@ -13,15 +17,15 @@ const getBreeds = () => {
       }
     })
     .then((res) => {
-      res.forEach((element) => {
-        console.log(element.name);
+     return res.forEach((element) => {
+        return element.name;
       });
     })
     .catch((err) => {
       console.log(err);
     });
 };
-// getBreeds();
+// listBreeds();
 
 
 function App() {
@@ -48,10 +52,11 @@ function App() {
         );
         const resultsJSON = await results.json();
         if (!resultsJSON.length) {
+          const breedList = await listBreeds()
           setCat((prevState) => {
             return {
               ...prevState,
-              results: "No cat found",
+              results: `No cat found, here are possible cats ${breedList}`,
             };
           });
         } else {
