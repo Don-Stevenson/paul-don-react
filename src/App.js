@@ -4,7 +4,7 @@ import Results from "./components/Results";
 import Search from "./components/Search";
 
 const getBreeds = () => {
-  return fetch("https://api.thecatapi.com/v1/breeds")
+   return fetch("https://api.thecatapi.com/v1/breeds")
     .then((response) => {
       if (response.status === 200) {
         return response.json();
@@ -13,15 +13,18 @@ const getBreeds = () => {
       }
     })
     .then((res) => {
-      res.forEach((element) => {
-        console.log(element.name);
+      let catArray = res.filter((element) => {
+        return element.name;
       });
+      return catArray
     })
     .catch((err) => {
       console.log(err);
     });
 };
-// getBreeds();
+  getBreeds().then((success) =>{
+   console.log(success)
+ })
 
 
 function App() {
@@ -51,7 +54,7 @@ function App() {
           setCat((prevState) => {
             return {
               ...prevState,
-              results: "No cat found",
+              results: "no cats found"
             };
           });
         } else {
@@ -71,7 +74,6 @@ function App() {
   return (
     <div className="App">
       <h1> Cat app </h1>
-
       <Search handleInput={handleInput} search={search} />
       <Results results={cat.results} />
     </div>
