@@ -2,8 +2,8 @@ import React from 'react'
 
 function Result (props) {
     return (
-        <div className="result">
-            <h3>{props.result}</h3>
+        <div className="results">
+            <div className="result">{props.result} </div>
         </div>
     )
 }
