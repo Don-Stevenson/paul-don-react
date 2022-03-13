@@ -3,14 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* const pallete = {
-$charcoal: #424b54ff,
-$flax: #e1ce7aff,
-$peach-puff: #ebcfb2ff,
-$pale-silver: #c5baafff,
-$white: #ffffffff;
-}  */
-
 
 main {
   width: 100%;
@@ -78,4 +70,4 @@ body {
   background: #424b54ff;
   flex: 1 1 100%;
   transition: 0.4s ease-out;
-} /** hello */
+} 
