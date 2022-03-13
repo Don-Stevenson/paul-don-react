@@ -40,7 +40,7 @@ function App() {
           setCat(prevState => {
             return {
               ...prevState,
-              results: `No cat found, here is a list of the possible cats:${breedList}`,
+              results: `No cat found, here is a list of the possible cats: ${breedList}`,
             }
           })
         } else {
