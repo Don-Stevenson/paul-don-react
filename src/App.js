@@ -1,5 +1,5 @@
 import "./App.css"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Results from "./components/Results"
 import Search from "./components/Search"
 
@@ -14,42 +14,49 @@ const listBreeds = async () => {
 }
 
 function App() {
-  const [cat, setCat] = useState({
-    search: "",
-    results: "",
-  })
+  const [searchCat, setSearchCat] = useState("")
+  const [descriptionResults, setDescrptionResults] = useState("")
+  const [imageResults, setImageResults] = useState("")
+
+  const fetchImage = async () => {
+    const res = await fetch(setImageResults)
+    const imageBlob = await res.blob()
+    const imageObjectURL = URL.createObjectURL(imageBlob)
+    setImageResults(imageObjectURL)
+  }
+
+  useEffect(() => {
+    fetchImage()
+  }, [])
+
   const handleInput = e => {
     const value = e.target.value
-    setCat(prevState => {
-      return {
-        ...prevState,
-        search: value,
-      }
-    })
+    setSearchCat(value)
+
+    // [...prevState, resultsJSON[0].description]
   }
 
   const search = async e => {
     try {
       if (e.key === "Enter") {
         const results = await fetch(
-          "https://api.thecatapi.com/v1/breeds/search?q=" + cat.search
+          "https://api.thecatapi.com/v1/breeds/search?q=" + searchCat
         )
         const resultsJSON = await results.json()
+        console.log({ resultsJSON })
         if (!resultsJSON.length) {
           const breedList = await listBreeds()
-          setCat(prevState => {
-            return {
+          setDescrptionResults(prevState => {
+            return [
               ...prevState,
-              results: `No cat found, here is a list of the possible cats: ${breedList}`,
-            }
+              `No cat found, here is a list of the possible cats: ${breedList}`,
+            ]
           })
         } else {
-          setCat(prevState => {
-            return {
-              ...prevState,
-              results: resultsJSON[0].description,
-            }
+          setDescrptionResults(prevState => {
+            return [...prevState, resultsJSON[0].description]
           })
+          setSearchCat("")
         }
       }
     } catch (error) {
@@ -59,9 +66,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1> Cat app </h1>
+      <h1> Cat App </h1>
       <Search handleInput={handleInput} search={search} />
-      <Results results={cat.results} />
+      <Results results={[descriptionResults, imageResults]} />
     </div>
   )
 }
